@@ -1,13 +1,12 @@
-import collections
-
-
 def cannot_make_amount(N, input):
-    # do something
     coin_arr = list(map(int, input.split()))
-    coin_counter = collections.Counter(coin_arr)
-
-    while True:
-        if not cannot_make_amount(coin_counter):
+    coin_arr.sort()
+    target = 1
+    for coin in coin_arr:
+        if target < coin:
+            break
+        target += coin
+    return target
 
 
 N = 5
@@ -19,3 +18,6 @@ if cannot_make_amount(N, input) == excepted_output:
 else:
     print(
         f'Expected output: {excepted_output}, Your answer: {cannot_make_amount(N, input)}')
+
+# 개선점
+# 다음 만들어야 하는 동전(target)을 동적으로 더해나가면서 구해야 한다.

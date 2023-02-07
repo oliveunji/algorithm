@@ -20,3 +20,5 @@ def solution(name):
             return sum(diff_arr) + len(diff_arr) - max_gap
         else:
             return sum(diff_arr) + max_gap
+
+# reference - https://100winone.tistory.com/81
