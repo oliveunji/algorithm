@@ -9,7 +9,7 @@ for _ in range(N):
     plus_cnt, minus_cnt, mul_cnt, div_cnt = map(int, f().split())
 
 # idea1 - 가능한 모든 경우의 연산에 대해 나열 후, eval 통해 min, max 구하기
-# 풀이법 - https://data-flower.tistory.com/72
+# 풀이법 - https://data-flower.tistory.com/72 -> DFS를 통해 구함
 
 max_val = -1e9
 min_val = 1e9
