@@ -1,21 +1,33 @@
-G = int(input())
-P = int(input())
+G = int(input())  # 탑승구의 갯수
+P = int(input())  # 비행기 입력 갯수
 
-arr = []
-visited = [False] * P
+
+def find_parent(parent, a):
+    if parent[a] != a:
+        parent[a] = find_parent(parent, parent[a])
+    return parent[a]
+
+
+def union_parent(parent, a, b):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
+
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
+
+
+parent = [0] * (G+1)
+for i in range(1, G+1):
+    parent[i] = i
+
+result = 0
 for _ in range(P):
-    arr.append(int(input()))
-
-count = 0
-for idx, val in enumerate(arr):
-    flag = False
-    for i in range(val-1, -1, -1):
-        if visited[i] == False:
-            visited[i] = True
-            flag = True
-            break
-    if flag == False:
+    root = find_parent(parent, int(input()))
+    if root == 0:
         break
-    count += 1
+    union_parent(parent, root, root-1)
+    result += 1
 
-print(count)
+print(result)
