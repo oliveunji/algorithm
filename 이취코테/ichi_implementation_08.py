@@ -20,3 +20,6 @@ def solution(n, weak, dist):
     if answer > len(dist):
         return -1
     return answer
+
+
+solution(12, [1, 5, 6, 10], [1, 2, 3, 4])
