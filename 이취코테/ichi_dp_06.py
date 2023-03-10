@@ -1,12 +1,8 @@
-word1 = input()
-word2 = input()
-
-
-def editDistance(str1, str2):
+def edit_dist(str1, str2):
     n = len(str1)
     m = len(str2)
 
-    dp = [[0] * (m+1) for _ in range(n+1)]
+    dp = [[0]*(m+1) for _ in range(n+1)]
 
     for i in range(1, n+1):
         dp[i][0] = i
@@ -18,7 +14,10 @@ def editDistance(str1, str2):
             if str1[i-1] == str2[j-1]:
                 dp[i][j] = dp[i-1][j-1]
             else:
-                dp[i][j] = 1 + min(dp[i][j-1], dp[i-1][i], dp[i-1][j-1])
+                dp[i][j] = 1 + min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j])
+    return dp[n][m]
 
 
-print(editDistance(word1, word2))
+str1 = input()
+str2 = input()
+print(edit_dist(str1, str2))
