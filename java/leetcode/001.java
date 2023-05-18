@@ -1,15 +1,13 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int[] results = new int[2];
-        for (int i=0; i < nums.length - 1; i++){
-            for (int j=i+1; j <nums.length; j++ ){
-                if (nums[i] + nums[j] == target){
-                    results[0] = i;
-                    results[1] = j;
-                }
-
+        Map<Integer, Integer> numToIndexMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (numToIndexMap.containsKey(complement)) {
+                return new int[] { numToIndexMap.get(complement), i };
             }
+            numToIndexMap.put(nums[i], i);
         }
-        return results;
+        throw new IllegalArgumentException("No two elements add up to the target");
     }
 }
